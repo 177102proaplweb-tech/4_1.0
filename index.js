@@ -1,19 +1,23 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const app = express();
 
 // define endpoint for exercise 1 here
-app.get('/math/circle/:r', (req, res) => {
-//TODO1  
+app.get("/math/circle/:r", (req, res) => {
+  const { radius } = req.query;
+  console.log(radius)
+  const radnum = Number(radius);
+  const result = {
+    area: Math.PI * radnum * radnum,
+    circumference: 2 * Math.PI * radnum
+  }
   res.json(result);
 });
 
 //TODO2
 
-
 //TODO3
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
