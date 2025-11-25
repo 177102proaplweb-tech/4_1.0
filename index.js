@@ -5,10 +5,8 @@ const app = express();
 
 // define endpoint for exercise 1 here
 app.get("/math/circle/:r", (req, res) => {
-  console.log()
-  const { radius } = req.query;
-  console.log(radius)
-  const radnum = Number(radius);
+  const { r } = req.params;
+  const radnum = Number(r);
   const result = {
     area: Math.PI * radnum * radnum,
     circumference: 2 * Math.PI * radnum
@@ -17,16 +15,6 @@ app.get("/math/circle/:r", (req, res) => {
 });
 
 //TODO2
-app.get("/math/rectangle/:width/:height", (req, res) => {
-  const { radius } = req.query;
-  console.log(radius)
-  const radnum = Number(radius);
-  const result = {
-    area: Math.PI * radnum * radnum,
-    circumference: 2 * Math.PI * radnum
-  }
-  res.json(result);
-});
 
 //TODO3
 
