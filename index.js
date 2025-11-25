@@ -15,7 +15,16 @@ app.get("/math/circle/:r", (req, res) => {
 });
 
 //TODO2
-
+app.get("/math/rectangle/:width/:height", (req, res) => {
+  const { width, height } = req.params
+  const w = Number(width)
+  const h = Number(height)
+  const result = {
+    area: w*h,
+    circumference: w+w+h+h
+  }
+  res.json(result);
+});
 //TODO3
 
 const PORT = process.env.PORT || 3000;
