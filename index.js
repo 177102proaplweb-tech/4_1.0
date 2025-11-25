@@ -51,6 +51,28 @@ app.get("/math/power/:base/:exponent", (req, res) => {
 });
 
 
+let categories = ['funy', 'lam']
+
+let funy = [{'joke': 'Why did the scarecrow win an award?', 'response': 'Because he was outstanding in his field!'}, {'joke': 'Why don\'t skeletons fight each other?', 'response': 'They don\'t have the guts.'}, {'joke': 'What do you call a fake noodle?', 'response': 'An impasta!'}, {'joke': 'Why did the bicycle fall over?', 'response': 'Because it was two-tired!'}]
+
+let lam = [{'joke': 'Why did the tomato turn red?', 'response': 'Because it saw the salad dressing!'}, {'joke': 'Why did the golfer bring two pairs of pants?', 'response': 'In case he got a hole in one!'}]
+
+app.get("/jokebook/categories", (req, res) => {
+  res.json(categories);
+});
+
+app.get("/jokebook/joke/:category", (req, res) => {
+  const { category } = req.params
+  if (categories.includes(category)) {
+    res.json(eval(category+"[Math.floor(Math.random() * "+category+".length)]"));
+  }
+  else {
+    res.status(404).json({ error: "no jokes for category "+category});
+  }
+});
+
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
